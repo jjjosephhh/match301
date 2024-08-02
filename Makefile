@@ -1,22 +1,17 @@
-# Define variables
 CC = gcc
-CFLAGS = -Wall -std=c99
+CFLAGS = -Wall -Werror -std=c99
 LDFLAGS = -lraylib -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL
 TARGET = main
-SOURCE = main.c
+SOURCES = main.c gem.c
 
-# Default target to build the binary
 all: $(TARGET)
 
-# Rule to build the binary
-$(TARGET): $(SOURCE)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCE) $(LDFLAGS)
+$(TARGET): $(SOURCES)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SOURCES) $(LDFLAGS)
 
-# Rule to build and run the binary
 run: $(TARGET)
 	./$(TARGET)
 
-# Rule to clean the build
 clean:
 	rm -f $(TARGET)
 
